@@ -10,7 +10,7 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "hannoi.py1",
+            "program": "hannoi.py",
             "console": "integratedTerminal"
         }
     ]
