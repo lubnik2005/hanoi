@@ -1,35 +1,25 @@
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 class ring:
     value = 0
     def __init__(self,int_value):
         self.value = int_value
         self.visual = '='
         self.visual_len = len(self.visual)
+        self.color = ''
 
     def __str__(self):
         return str(self.value)
     __repr__ = __str__
     
-def power(base,exponent):
-    if exponent == 0:
-        return(1)
-    value = 1
-    for index in range(exponent):
-        value = value * base
-    return(value)
-
-def recursive(pegs,initial,opposite,final,odd,moves):
-    if moves == 0:
-        return(pegs)
-    if odd:
-        pegs = move(pegs,initial,final)
-    else: 
-        initial, final = change_final(initial, final)
-        pegs = move(pegs,initial,final)
-        initial, final = change_final(initial, final)
-    odd = not odd
-    moves = moves - 1
-    return(recursive(pegs,initial,opposite,final,odd,moves))
-
 def size_to_diameter(size):
     return(size * 2) -1
 
@@ -110,7 +100,7 @@ def tower_of_hannoi(rings):
     ring_list = [ring(rings - int_value) for int_value in range(rings)]
 
     odd = not int(len(ring_list)) % 2 == 0
-    expected_num_turns = power(2,rings) - 1
+    expected_num_turns = 2**rings - 1
     print('Expected Number of turns:', expected_num_turns)
     pegs = [ [] for _ in range(3) ]
     pegs[0] = ring_list
